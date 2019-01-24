@@ -1,0 +1,15 @@
+{
+  "name": "sosia",
+  "version": "1.0.0",
+  "description": "Sosia is a visual regression tool, powered by component snapshots",
+  "main": "dist/index.js",
+  "dependencies": {
+    "jest-image-snapshot": "^2.7.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@types/jest-image-snapshot": "^2.4.0",
+    "@types/react-dom": "^16.0.11"
+  }
+}
