@@ -1,5 +1,6 @@
 import Datauri from 'datauri';
 import puppeteer, {Browser} from 'puppeteer';
+import {Page} from 'sosia-types';
 
 interface Viewport {
   height: number;
@@ -26,7 +27,7 @@ const capture = (browser: Browser, viewport: Viewport) => async (uri: string): P
   });
 };
 
-const toDataUri = (page: Sosia.Page): string => {
+const toDataUri = (page: Page): string => {
   const html = `
     <!DOCTYPE html>
     <head>
@@ -49,7 +50,7 @@ export default class PupeteerBrowserTarget {
     this.viewport = {height, width};
   }
 
-  async execute(pages: Sosia.Page[]): Promise<string[]> {
+  async execute(pages: Page[]): Promise<string[]> {
     const numOfPages = pages.length;
     const screenshots = [] as string[];
 

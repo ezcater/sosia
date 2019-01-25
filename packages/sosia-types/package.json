@@ -1,0 +1,7 @@
+{
+  "name": "sosia-types",
+  "version": "1.0.1",
+  "dependencies": {
+    "@types/react": "^16.7.20"
+  }
+}

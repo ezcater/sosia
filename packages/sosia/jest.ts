@@ -1,10 +1,11 @@
 import {render} from 'react-dom';
-import {get} from './configuration';
 import {toMatchImageSnapshot} from 'jest-image-snapshot';
+import {get} from './configuration';
+import {Example, Page, Target} from 'sosia-types';
 
 expect.extend({toMatchImageSnapshot});
 
-const generateExamples = (options: any): Sosia.Example[] => {
+const generateExamples = (options: any): Example[] => {
   const {sources} = get();
 
   if (!sources) throw new Error('Please configure an example source via `configure`.');
@@ -13,7 +14,7 @@ const generateExamples = (options: any): Sosia.Example[] => {
     (list, source) => {
       return [...list, ...source.execute(options)];
     },
-    [] as Sosia.Example[]
+    [] as Example[]
   );
 };
 
@@ -33,7 +34,7 @@ const extractCss = (container: ParentNode): string => {
     .join('\n');
 };
 
-const buildPage = (example: Sosia.Example): Sosia.Page => {
+const buildPage = (example: Example): Page => {
   const container = document.createElement('div');
 
   render(example.component(), container);
@@ -44,18 +45,12 @@ const buildPage = (example: Sosia.Example): Sosia.Page => {
   };
 };
 
-const takeSnapshots = async ({
-  target,
-  examples,
-}: {
-  target: Sosia.Target;
-  examples: Sosia.Example[];
-}) => {
+const takeSnapshots = async ({target, examples}: {target: Target; examples: Example[]}) => {
   const pages = examples.map(buildPage);
   return await target.execute(pages);
 };
 
-const runTests = (examples: Sosia.Example[]): void => {
+const runTests = (examples: Example[]): void => {
   const {targets} = get();
 
   if (!targets) throw new Error('Please configure at least one browser target via `configure`.');

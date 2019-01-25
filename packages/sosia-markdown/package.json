@@ -1,12 +1,14 @@
 {
   "name": "sosia-markdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sosia plugin to enable snapshots based on markdown examples",
   "main": "dist/index.js",
   "dependencies": {
     "markdown-ast": "^0.2.1",
-    "react": "^16.7.0",
-    "react-live": "^1.12.0"
+    "react-live": "^1.12.0",
+    "sosia-types": "^1.0.1"
   },
-  "devDependencies": {}
+  "peerDependencies": {
+    "react": "16.x"
+  }
 }

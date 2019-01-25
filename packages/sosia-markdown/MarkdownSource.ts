@@ -1,15 +1,7 @@
 import mdToAst from 'markdown-ast';
-import {createElement, ReactElement} from 'react';
+import {createElement} from 'react';
 import MarkdownRenderer from './MarkdownRenderer';
-
-interface Component {
-  (): ReactElement<any> | null;
-}
-
-interface Example {
-  name: string;
-  component: Component;
-}
+import {Example} from 'sosia-types';
 
 export default class MarkdownSource {
   execute({markdown, scope}: {markdown: string; scope: object}): Example[] {
@@ -20,7 +12,8 @@ export default class MarkdownSource {
       (ex, node) => {
         switch (node.type) {
           case 'title':
-            title = (node.block[0] as any).text;
+            const block = node.block[0] as any;
+            title = block && block.text;
             break;
           case 'codeBlock':
             ex.push({

@@ -1,15 +1,39 @@
 {
   "name": "sosia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sosia is a visual regression tool, powered by component snapshots",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezcater/sosia.git"
+  },
+  "keywords": [
+    "visual",
+    "regression",
+    "react",
+    "component",
+    "snapshot",
+    "puppeteer",
+    "jest",
+    "coverage"
+  ],
+  "author": "craigcav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ezcater/sosia/issues"
+  },
+  "homepage": "https://github.com/ezcater/sosia#readme",
   "main": "dist/index.js",
   "dependencies": {
     "jest-image-snapshot": "^2.7.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "sosia-types": "^1.0.1"
   },
   "devDependencies": {
     "@types/jest-image-snapshot": "^2.4.0",
     "@types/react-dom": "^16.0.11"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x",
+    "jest": ">=20 <=23"
   }
 }

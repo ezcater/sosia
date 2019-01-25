@@ -1,0 +1,15 @@
+{
+  "files": ["index.d.ts", "third-party.d.ts"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es6"],
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "baseUrl": "../",
+    "typeRoots": ["node_modules/@types"],
+    "types": [],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

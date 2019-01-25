@@ -1,10 +1,12 @@
-let configuration = {} as Partial<Sosia.Configuration>;
+import {Configuration} from 'sosia-types';
 
-export function get(): Partial<Sosia.Configuration> {
+let configuration = {} as Partial<Configuration>;
+
+export function get(): Partial<Configuration> {
   return configuration;
 }
 
-export function merge(extra: Partial<Sosia.Configuration>): void {
+export function merge(extra: Partial<Configuration>): void {
   Object.assign(configuration, extra);
 }
 
