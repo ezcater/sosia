@@ -1,4 +1,5 @@
 import {render} from 'react-dom';
+import {renderToStaticMarkup} from 'react-dom/server';
 import {toMatchImageSnapshot} from 'jest-image-snapshot';
 import {get} from './configuration';
 import {Example, Page, Target} from 'sosia-types';
@@ -36,11 +37,12 @@ const extractCss = (container: ParentNode): string => {
 
 const buildPage = (example: Example): Page => {
   const container = document.createElement('div');
+  const output = example.component();
 
-  render(example.component(), container);
+  render(output, container);
 
   return {
-    body: container.innerHTML,
+    body: renderToStaticMarkup(output),
     css: extractCss(document),
   };
 };
