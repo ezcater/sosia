@@ -13,7 +13,7 @@ const capture = (browser: Browser, viewport: Viewport) => async (uri: string): P
   const page = await browser.newPage();
 
   await page.setViewport(viewport);
-  await page.goto(uri);
+  await page.goto(uri, {waitUntil: 'load'});
 
   return await page.screenshot({
     type: 'png',
@@ -55,7 +55,7 @@ export default class PupeteerBrowserTarget {
     const screenshots = [] as string[];
 
     for (let i = 0; i < numOfPages; i += numParallel) {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       const uris = pages.map(toDataUri);
       const batch = uris.slice(i, i + numParallel);
       const promises = batch.map(capture(browser, this.viewport));
