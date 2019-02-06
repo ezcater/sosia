@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "builds": [{"src": "screenshot.js", "use": "@now/node", "config": {"maxLambdaSize": "40mb"}}],
+  "routes": [{"src": "/(.+)", "dest": "/screenshot.js"}]
+}

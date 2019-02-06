@@ -1,0 +1,11 @@
+{
+  "name": "remote-screenshot-puppeteer",
+  "version": "1.0.0",
+  "description": "Screenshoting service powered by puppeteer",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "1.11.1",
+    "puppeteer-core": "1.11.0"
+  }
+}

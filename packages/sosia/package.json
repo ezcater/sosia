@@ -1,6 +1,6 @@
 {
   "name": "sosia",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sosia is a visual regression tool, powered by component snapshots",
   "repository": {
     "type": "git",
