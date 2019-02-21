@@ -1,7 +1,7 @@
 {
   "name": "sosia-types",
-  "version": "1.0.1",
-  "dependencies": {
+  "version": "1.0.2",
+  "peerDependencies": {
     "@types/react": "^16.7.20"
   }
 }

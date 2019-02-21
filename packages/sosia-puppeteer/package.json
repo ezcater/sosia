@@ -1,14 +1,14 @@
 {
   "name": "sosia-puppeteer",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Browser target for Sosia powered by puppeteer (headless chrome)",
   "main": "dist/index.js",
   "dependencies": {
     "datauri": "^1.1.0",
-    "puppeteer": "^1.11.0",
-    "sosia-types": "^1.0.1"
+    "puppeteer": "^1.12.2",
+    "sosia-types": "^1.0.2"
   },
   "devDependencies": {
-    "@types/puppeteer": "^1.11.1"
+    "@types/puppeteer": "^1.12.1"
   }
 }

@@ -1,14 +1,14 @@
 {
   "name": "sosia-remote-puppeteer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Remote browser target for Sosia powered by puppeteer (headless chrome)",
   "main": "dist/index.js",
   "dependencies": {
     "datauri": "^1.1.0",
     "node-fetch": "^2.3.0",
-    "sosia-types": "^1.0.1"
+    "sosia-types": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.1.4"
+    "@types/node-fetch": "^2.1.6"
   }
 }
