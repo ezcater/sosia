@@ -13,7 +13,7 @@ export default class MarkdownSource {
         switch (node.type) {
           case 'title':
             const block = node.block[0] as any;
-            title = block && block.text;
+            title = block && block.text.replace(/[^\w]+/gu, '-');
             break;
           case 'codeBlock':
             ex.push({
