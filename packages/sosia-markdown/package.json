@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "markdown-ast": "^0.2.1",
-    "react-live": "^1.12.0",
+    "react-live": "^2.0.1",
     "sosia-types": "^1.0.2"
   },
   "peerDependencies": {
