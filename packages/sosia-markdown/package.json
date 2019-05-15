@@ -1,6 +1,6 @@
 {
   "name": "sosia-markdown",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Sosia plugin to enable snapshots based on markdown examples",
   "main": "dist/index.js",
   "dependencies": {
