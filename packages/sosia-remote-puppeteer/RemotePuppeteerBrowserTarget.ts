@@ -21,18 +21,21 @@ const capture = (options: Options) => async (uri: string): Promise<string> => {
   return buffer.toString('base64');
 };
 
+const generateHTML = (page: Page): string => {
+  return `
+  <!DOCTYPE html>
+  <head>
+  <meta charset="utf-8">
+  <style>
+    ${page.css}
+  </style>
+  </head>
+  ${page.body}
+`;
+};
+
 const toDataUri = (page: Page): string => {
-  const html = `
-    <!DOCTYPE html>
-    <head>
-    <meta charset="utf-8">
-    <style>
-      ${page.css}
-    </style>
-    </head>
-    ${page.body}
-  `;
-  const htmlBuffer = Buffer.from(html, 'utf8');
+  const htmlBuffer = Buffer.from(generateHTML(page), 'utf8');
   const datauri = new Datauri();
   datauri.format('.html', htmlBuffer);
   return datauri.content;
