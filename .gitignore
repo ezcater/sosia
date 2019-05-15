@@ -7,4 +7,4 @@ coverage
 dist
 compiled
 .awcache
-.rts2_cache_cjs
+.rts2_cache*
