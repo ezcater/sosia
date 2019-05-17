@@ -1,5 +1,6 @@
 {
-  "name": "sosia",
+  "private": true,
+  "name": "sosia-monorepo",
   "version": "1.0.0",
   "description": "Sosia is a visual regression tool, powered by component snapshots",
   "repository": {
