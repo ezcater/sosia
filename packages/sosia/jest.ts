@@ -63,8 +63,7 @@ const runTests = (examples: Example[]): void => {
     describe(`snapshot: ${targetName}`, () => {
       examples.forEach((example, i) => {
         const customSnapshotIdentifier = `${targetName} ${example.name}`
-          .split(' ')
-          .join('-')
+          .replace(/[^\w]+/gu, '-')
           .toLowerCase();
 
         test(`${example.name}`, async () => {
