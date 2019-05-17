@@ -60,14 +60,18 @@ This component is used to do a thing
 ````
 
 ```jsx
-import {visualSnapshots} from 'sosia';
+import {toMatchVisualSnapshot} from 'sosia';
 import MyComponent from '../MyComponent';
 import markdown from '../MyComponent.md';
+
+// make the custom matcher available to jest
+// note: this can be done once in your jest setup
+expect.extend({toMatchVisualSnapshot});
 
 const scope = {MyComponent};
 
 describe('My Component', () => {
-  visualSnapshots({markdown, scope});
+  expect({markdown, scope}).toMatchVisualSnapshot();
 });
 ```
 
