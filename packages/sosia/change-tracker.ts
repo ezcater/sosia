@@ -8,9 +8,9 @@ type NamedPage = Page & {
 
 const cacheMap = new Map();
 
-export default ({cachePath}: {cachePath: string}) => {
+export default ({cachePath, updateSnapshot}: {cachePath: string; updateSnapshot: boolean}) => {
   if (!cacheMap.has(cachePath)) {
-    cacheMap.set(cachePath, new SnapshotState(cachePath, {updateSnapshot: 'all'} as any));
+    cacheMap.set(cachePath, new SnapshotState(cachePath, {updateSnapshot: updateSnapshot} as any));
   }
 
   const snapshotState = cacheMap.get(cachePath);
@@ -19,23 +19,22 @@ export default ({cachePath}: {cachePath: string}) => {
     const testName = page.name;
     const currentHash = hash(page);
 
-    // to use jest to detect changes, we need to tell jest NOT to update snapshots
-    Object.assign(snapshotState, {_updateSnapshot: 'none'});
+    const {added, updated} = snapshotState;
 
     // run snapshot to see if there was a match
-    const match = snapshotState.match({testName, received: currentHash});
+    const {pass, key} = snapshotState.match({testName, received: currentHash});
 
-    // reset back to allow updating the state and reset internal counters
-    Object.assign(snapshotState, {_updateSnapshot: 'all', _counters: new Map()});
+    // visual regression should be run on new pages and on pages that have uncommitted changes
+    const match = pass && added === snapshotState.added && updated === snapshotState.updated;
 
-    // if the hash has changed, we can update it
-    if (!match.pass) {
-      // now rerun to ensure new has is written
-      snapshotState.match({testName, received: currentHash});
-      return true;
+    if (!pass) {
+      // if there are uncommitted changes, clear the current hash from the cache to ensure
+      // a new hash is created when the user updates their snapshots
+      snapshotState._dirty = true;
+      snapshotState._snapshotData[key] = '__diff__';
     }
 
-    return false;
+    return !match;
   };
 
   return {
