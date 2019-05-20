@@ -5,6 +5,7 @@ import {get} from './configuration';
 import {Example, Page, Target} from 'sosia-types';
 import trackChanges from './change-tracker';
 import {resolveCachePathFromTestPath} from './utils';
+import {SnapshotState} from 'jest-snapshot';
 
 expect.extend({toMatchImageSnapshot});
 
@@ -57,14 +58,14 @@ const takeSnapshots = async ({target, pages}: {target: Target; pages: Page[]}) =
   return await target.execute(pages);
 };
 
-const runTests = (testPath: string, examples: Example[]): void => {
+const runTests = (testPath: string, examples: Example[], updateSnapshot: boolean): void => {
   const {targets} = get();
 
   if (!targets) throw new Error('Please configure at least one browser target via `configure`.');
 
   const pages = examples.map(buildPage);
   const cachePath = resolveCachePathFromTestPath(testPath);
-  const changeTracker = trackChanges({cachePath});
+  const changeTracker = trackChanges({cachePath, updateSnapshot});
 
   for (const [targetName, target] of Object.entries(targets)) {
     const changedPages = changeTracker.getChangedPages(pages);
@@ -92,10 +93,13 @@ const runTests = (testPath: string, examples: Example[]): void => {
   }
 };
 
-export function toMatchVisualSnapshot(this: {testPath: string}, received: any) {
-  const {testPath} = this;
+export function toMatchVisualSnapshot(this: {testPath: string; snapshotState: any}, received: any) {
+  const {
+    testPath,
+    snapshotState: {_updateSnapshot: updateSnapshot},
+  } = this;
   const examples = generateExamples(received);
-  runTests(testPath, examples);
+  runTests(testPath, examples, updateSnapshot);
   return {pass: true, message: () => ''};
 }
 
