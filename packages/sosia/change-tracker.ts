@@ -18,7 +18,7 @@ export default ({cachePath, updateSnapshot}: {cachePath: string; updateSnapshot:
 
   const markAsDirty = (key: string) => {
     snapshotState._dirty = true;
-    snapshotState._snapshotData[key] = '__diff__';
+    delete snapshotState._snapshotData[key];
   };
 
   const match = (page: NamedPage) => {
@@ -34,12 +34,6 @@ export default ({cachePath, updateSnapshot}: {cachePath: string; updateSnapshot:
 
     // visual regression should be run on new pages and on pages that have uncommitted changes
     const match = pass && added === snapshotState.added && updated === snapshotState.updated;
-
-    if (!pass) {
-      // if there are uncommitted changes, clear the current hash from the cache to ensure
-      // a new hash is created when the user updates their snapshots
-      markAsDirty(key);
-    }
 
     return !match;
   };
