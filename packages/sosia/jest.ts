@@ -64,7 +64,12 @@ const takeSnapshots = async ({target, pages}: {target: Target; pages: Page[]}) =
   return await target.execute(pages);
 };
 
-const runTests = (testPath: string, examples: Example[], updateSnapshot: boolean): void => {
+export function toMatchVisualSnapshot(this: {testPath: string; snapshotState: any}, received: any) {
+  const context = this;
+  const {testPath, snapshotState} = context;
+  const {_updateSnapshot: updateSnapshot} = snapshotState;
+
+  const examples = generateExamples(received);
   const {targets} = get();
 
   if (!targets) throw new Error('Please configure at least one browser target via `configure`.');
@@ -86,9 +91,15 @@ const runTests = (testPath: string, examples: Example[], updateSnapshot: boolean
           if (i === -1) return;
           const images = await promises;
           const image = images[i];
-          expect(image).toMatchImageSnapshot({
-            customSnapshotIdentifier,
-          });
+
+          try {
+            expect(image).toMatchImageSnapshot({
+              customSnapshotIdentifier,
+            });
+          } catch (error) {
+            changeTracker.markAsDirty(page);
+            throw error;
+          }
         });
       });
     });
@@ -97,15 +108,7 @@ const runTests = (testPath: string, examples: Example[], updateSnapshot: boolean
       changeTracker.commitCache();
     });
   }
-};
 
-export function toMatchVisualSnapshot(this: {testPath: string; snapshotState: any}, received: any) {
-  const {
-    testPath,
-    snapshotState: {_updateSnapshot: updateSnapshot},
-  } = this;
-  const examples = generateExamples(received);
-  runTests(testPath, examples, updateSnapshot);
   return {pass: true, message: () => ''};
 }
 
