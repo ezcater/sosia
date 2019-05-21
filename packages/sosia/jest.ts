@@ -1,11 +1,10 @@
-import {render} from 'react-dom';
-import {renderToStaticMarkup} from 'react-dom/server';
+import {render, unmountComponentAtNode} from 'react-dom';
+import {act} from 'react-dom/test-utils';
 import {toMatchImageSnapshot} from 'jest-image-snapshot';
 import {get} from './configuration';
 import {Example, Page, Target} from 'sosia-types';
 import trackChanges from './change-tracker';
 import {resolveCachePathFromTestPath} from './utils';
-import {SnapshotState} from 'jest-snapshot';
 
 expect.extend({toMatchImageSnapshot});
 
@@ -39,16 +38,23 @@ const extractCss = (container: ParentNode): string => {
 };
 
 const buildPage = (example: Example): Page & {name: string} => {
-  const container = document.createElement('div');
+  const container = document.body.appendChild(document.createElement('div'));
   const output = example.component();
 
-  render(output, container);
+  act(() => {
+    render(output, container);
+  });
 
-  return {
-    body: renderToStaticMarkup(output),
-    css: extractCss(document),
-    name: example.name,
-  };
+  const body = container.outerHTML;
+  const css = extractCss(document);
+
+  unmountComponentAtNode(container);
+
+  if (container.parentNode === document.body) {
+    document.body.removeChild(container);
+  }
+
+  return {body, css, name: example.name};
 };
 
 const getName = (targetName: string, exampleName: string) =>
