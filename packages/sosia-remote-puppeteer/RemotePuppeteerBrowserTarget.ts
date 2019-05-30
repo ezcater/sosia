@@ -1,4 +1,3 @@
-import Datauri from 'datauri';
 import fetch from 'node-fetch';
 import {Page} from 'sosia-types';
 
@@ -22,20 +21,10 @@ const capture = (options: Options) => async (uri: string): Promise<string> => {
 };
 
 const toDataUri = (page: Page): string => {
-  const html = `
-    <!DOCTYPE html>
-    <head>
-    <meta charset="utf-8">
-    <style>
-      ${page.css}
-    </style>
-    </head>
-    ${page.body}
-  `;
-  const htmlBuffer = Buffer.from(html, 'utf8');
-  const datauri = new Datauri();
-  datauri.format('.html', htmlBuffer);
-  return datauri.content;
+  const html = `<!DOCTYPE html><head><meta charset="utf-8"><style>${page.css}</style></head><body>${
+    page.body
+  }</body></html>`;
+  return `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
 };
 
 export default class PupeteerBrowserTarget {
