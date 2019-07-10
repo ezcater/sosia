@@ -28,19 +28,5 @@
     "printWidth": 100,
     "trailingComma": "es5",
     "bracketSpacing": false
-  },
-  "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "@types/node": "^10.11.0",
-    "@types/react": "^16.7.20",
-    "jest": "^23.6.0",
-    "jest-config": "^23.6.0",
-    "prettier": "^1.14.3",
-    "ts-jest": "^23.10.2",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.0.3"
   }
 }
