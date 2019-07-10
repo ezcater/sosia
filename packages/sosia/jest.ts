@@ -45,7 +45,7 @@ const buildPage = (example: Example): Page & {name: string} => {
     render(output, container);
   });
 
-  const body = container.outerHTML;
+  const body = document.body.outerHTML;
   const css = extractCss(document);
 
   unmountComponentAtNode(container);

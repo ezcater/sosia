@@ -1,3 +1,19 @@
 {
-  "extends": "../../tsconfig"
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["dom", "es2017"],
+    "composite": true,
+    "outDir": "dist",
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "esModuleInterop": true
+  },
+  "exclude": ["**/dist/**/*"]
 }
