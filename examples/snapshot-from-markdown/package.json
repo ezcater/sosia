@@ -20,12 +20,13 @@
     "sosia-remote-puppeteer": "1.1.3"
   },
   "devDependencies": {
+    "jest-raw-loader": "^1.0.1",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
   },
   "browserslist": [
