@@ -1,18 +1,10 @@
 import {visualSnapshots} from 'sosia';
-import * as Recipe from '@ezcater/recipe';
 import App from './App';
+import markdown from './super-important-form.md';
 
 describe('App', () => {
   visualSnapshots({
-    markdown: `
-### Super important form
-\`\`\`jsx
-  <App/ >
-\`\`\`
-`,
-    scope: {
-      ...Recipe,
-      App,
-    },
+    markdown,
+    scope: {App},
   });
 });
