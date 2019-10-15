@@ -8,3 +8,4 @@ dist
 compiled
 .awcache
 .rts2_cache*
+*snap.cache
