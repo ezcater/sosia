@@ -4,6 +4,9 @@
   "description": "Screenshoting service powered by puppeteer",
   "private": true,
   "license": "MIT",
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "chrome-aws-lambda": "^2.0.2",
     "puppeteer-core": "^2.0.0"
