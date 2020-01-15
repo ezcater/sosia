@@ -34,9 +34,3 @@ interface MatchImageSnapshotOptions {
    */
   failureThresholdType?: 'pixel' | 'percent';
 }
-
-declare namespace jest {
-  interface Matchers<R> {
-    toMatchImageSnapshot(options: MatchImageSnapshotOptions): R;
-  }
-}
