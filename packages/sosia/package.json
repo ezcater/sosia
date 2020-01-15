@@ -1,6 +1,6 @@
 {
   "name": "sosia",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Sosia is a visual regression tool, powered by component snapshots",
   "repository": {
     "type": "git",
@@ -24,17 +24,17 @@
   "homepage": "https://github.com/ezcater/sosia#readme",
   "main": "dist/index.js",
   "dependencies": {
-    "jest-haste-map": "^24.8.1",
-    "jest-image-snapshot": "^2.8.2",
-    "jest-snapshot": "^24.8.0",
+    "jest-haste-map": "^24.9.0",
+    "jest-image-snapshot": "^2.12.0",
+    "jest-snapshot": "^24.9.0",
     "object-hash": "^1.3.1",
-    "sosia-types": "^1.0.3"
+    "sosia-types": "^1.0.4"
   },
   "devDependencies": {
-    "@types/jest-image-snapshot": "^2.8.0",
-    "@types/node": "^12.6.2",
+    "@types/jest-image-snapshot": "^2.11.1",
+    "@types/node": "^12.12.24",
     "@types/object-hash": "^1.2.0",
-    "@types/react-dom": "^16.8.2"
+    "@types/react-dom": "^16.9.4"
   },
   "peerDependencies": {
     "react": "16.x",
