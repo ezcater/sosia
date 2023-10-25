@@ -1,3 +1,11 @@
+# THIS PROJECT IS DEPRECATED AND SHOULD NOT BE USED
+
+This project is no longer maintained. In addition, we have recently been made aware of critical security vulnerabilities.
+
+For those reasons, we have chosen to archive this repo. PLEASE DO NOT USE THIS IN YOUR PROJECT!
+
+---
+
 # Sosia
 
 Sosia is a visual regression testing tool, powered by component snapshots. Sosia compares the visual appearance of components before and after a change to ensure consistent styling of your application across responsive breakpoints and across various browsers.
