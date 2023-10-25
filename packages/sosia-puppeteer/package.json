@@ -4,7 +4,7 @@
   "description": "Browser target for Sosia powered by puppeteer (headless chrome)",
   "main": "dist/index.js",
   "dependencies": {
-    "datauri": "^1.1.0",
+    "datauri": "^4.1.0",
     "puppeteer": "^1.12.2",
     "sosia-types": "^1.0.2"
   },
